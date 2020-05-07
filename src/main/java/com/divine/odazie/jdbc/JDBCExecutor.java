@@ -16,18 +16,24 @@ public class JDBCExecutor {
         try{
             Connection connection = databaseConnectionManager.getConnection();
             CustomerDAO customerDAO = new CustomerDAO(connection);
-            Customer customer = new Customer();
+            Customer customer = customerDAO.findById(1000);
+            System.out.println("First Name: " + customer.getFirstName() +
+                    " \nLast name: " + customer.getLastName());
 
-            customer.setFirstName("Kiki");
-            customer.setLastName("Odazie");
+/*
+         ADDS A NEW CUSTOMER TO THE DATABASE
+            customer.setFirstName("aja");
+            customer.setLastName("John");
             customer.setEmail("Kiki.odazie17232@yahoo.com");
             customer.setPhone("0399203920");
             customer.setAddress("1234 Main Road");
             customer.setCity("Port-Harcourt");
             customer.setState("Rivers State");
             customer.setZipCode("500172");
-
             customerDAO.create(customer);
+*/
+
+
         }catch (SQLException e){
             e.printStackTrace();
         }
