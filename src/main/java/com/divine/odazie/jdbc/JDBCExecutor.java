@@ -16,9 +16,51 @@ public class JDBCExecutor {
         try{
             Connection connection = databaseConnectionManager.getConnection();
             CustomerDAO customerDAO = new CustomerDAO(connection);
+
+//  IMPLEMENTING the entire CRUD operations
+            Customer customer = new Customer();
+            customer.setFirstName("BEKU");
+            customer.setLastName("Ezege");
+            customer.setEmail("bekuExeger@gmail.com");
+            customer.setPhone("090239281931");
+            customer.setAddress("1234 RING Road");
+            customer.setCity("Port-Harcourt");
+            customer.setState("Rivers State");
+            customer.setZipCode("500172");
+
+            Customer dbCustomer = customerDAO.create(customer);
+            System.out.println(dbCustomer);
+            dbCustomer = customerDAO.findById(dbCustomer.getId());
+            System.out.println(dbCustomer);
+            dbCustomer.setEmail("beku@gmail.com");
+            dbCustomer = customerDAO.update(dbCustomer);
+            System.out.println(dbCustomer);
+            customerDAO.delete(dbCustomer.getId());
+
+
+
+
+
+
+/*
+         DELETE CUSTOMER BY ID
+            Customer customer = customerDAO.findById(10001);
+            System.out.println("First Name: " + customer.getFirstName() +
+                    " \nLast name: " + customer.getLastName() + " \nemail: " + customer.getEmail());
+            customer.setEmail("kOdazie2342@gmail.com");
+
+
+            customer = customerDAO.update(customer);
+            System.out.println("First Name: " + customer.getFirstName() +
+                    " \nLast name: " + customer.getLastName() + " email: " + customer.getEmail());
+*/
+
+/*
+          FINDS CUSTOMER WITH CUSTOMER ID
             Customer customer = customerDAO.findById(1000);
             System.out.println("First Name: " + customer.getFirstName() +
                     " \nLast name: " + customer.getLastName());
+*/
 
 /*
          ADDS A NEW CUSTOMER TO THE DATABASE
