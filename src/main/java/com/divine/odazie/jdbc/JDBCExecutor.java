@@ -16,8 +16,18 @@ public class JDBCExecutor {
         try{
             Connection connection = databaseConnectionManager.getConnection();
             CustomerDAO customerDAO = new CustomerDAO(connection);
+            OrderDAO orderDAO = new OrderDAO(connection);
 
-//  IMPLEMENTING the entire CRUD operations
+            //Finding Order by ID
+
+            Order order = orderDAO.findById(1000);
+            System.out.println(order);
+
+
+
+
+/*
+  IMPLEMENTING the entire CRUD operations
             Customer customer = new Customer();
             customer.setFirstName("BEKU");
             customer.setLastName("Ezege");
@@ -38,6 +48,7 @@ public class JDBCExecutor {
             customerDAO.delete(dbCustomer.getId());
 
 
+*/
 
 
 
