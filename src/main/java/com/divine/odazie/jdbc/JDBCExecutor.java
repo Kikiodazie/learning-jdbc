@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
+
 /*
 @author: Divine Odazie
 @Class Description: This class executes SQL statements using JDBC.
@@ -16,12 +18,36 @@ public class JDBCExecutor {
         try{
             Connection connection = databaseConnectionManager.getConnection();
             CustomerDAO customerDAO = new CustomerDAO(connection);
+            customerDAO.findAllSorted(20).forEach(System.out::println); //Ordering and limiting results
+
+            System.out.println("Paged");
+
+            for (int i = 1; i < 3; i++) {
+                System.out.println("Page Number: " + i);
+                customerDAO.findAllPaged(10,i).forEach(System.out::println);
+            }
+
+
+
+
+
+
+/*
+      STORED PROCEDURE
+
             OrderDAO orderDAO = new OrderDAO(connection);
 
-            //Finding Order by ID
+            List<Order> orders = orderDAO.getOrdersForCustomers(789);
+            orders.forEach(System.out::println);
+*/
 
+
+
+            /*
+            Finding Order by ID
             Order order = orderDAO.findById(1000);
             System.out.println(order);
+*/
 
 
 
